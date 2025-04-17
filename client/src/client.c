@@ -42,24 +42,25 @@ int main(void)
 
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
-	leer_consola(logger);
+	//leer_consola(logger);
 
-	log_destroy(logger);
-	config_destroy(config);
+	//log_destroy(logger);
+	//config_destroy(config);
 
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
 	// ADVERTENCIA: Antes de continuar, tenemos que asegurarnos que el servidor esté corriendo para poder conectarnos a él
 
 	// Creamos una conexión hacia el servidor
-	//conexion = crear_conexion(ip, puerto);
+	conexion = crear_conexion(ip, puerto);
 
 	// Enviamos al servidor el valor de CLAVE como mensaje
+	enviar_mensaje(valor, conexion);
 
 	// Armamos y enviamos el paquete
 	//paquete(conexion);
 
-	//terminar_programa(conexion, logger, config);
+	terminar_programa(conexion, logger, config);
 
 	/*---------------------------------------------------PARTE 5-------------------------------------------------------------*/
 	// Proximamente
@@ -115,5 +116,9 @@ void paquete(int conexion)
 void terminar_programa(int conexion, t_log* logger, t_config* config)
 {
 	/* Y por ultimo, hay que liberar lo que utilizamos (conexion, log y config) 
-	  con las funciones de las commons y del TP mencionadas en el enunciado */
+	con las funciones de las commons y del TP mencionadas en el enunciado */
+
+	log_destroy(logger);
+	config_destroy(config);
+	liberar_conexion(conexion); // ?
 }
